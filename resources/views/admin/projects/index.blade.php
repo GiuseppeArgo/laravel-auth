@@ -8,6 +8,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Opzioni</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,6 +17,7 @@
                         <td>{{ $project->id }}</td>
                         <td>{{ $project->name }}</td>
                         <td>{{ $project->description }}</td>
+                        <td> <a href="{{ route('admin.projects.show', ['project' => $project->slug])}}" class="btn btn-info">Dettagli</a></td>
                     </tr>
                 @endforeach
             </tbody>
