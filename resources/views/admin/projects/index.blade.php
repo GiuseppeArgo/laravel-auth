@@ -2,9 +2,9 @@
 
 @section('content')
     <div>
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center mt-5 mb-5">
         <h1>I tuoi progetti</h1>
-        <a class="btn btn-primary" href="{{ route('admin.projects.create') }}">Crea nuovo progetto</a>
+        <a class="btn btn-secondary" href="{{ route('admin.projects.create') }}">Crea nuovo progetto</a>
     </div>
 
     @if (session('message'))
@@ -33,7 +33,9 @@
                         <td>{{ $project->slug }}</td>
                         <td>
                             <a href="{{ route('admin.projects.show', ['project' => $project->slug]) }}"
-                                class="btn btn-info">Dettagli</a>
+                                class="btn btn-info mb-1">Dettagli</a>
+                            <a href="{{ route('admin.projects.edit', ['project' =>$project->slug]) }}"
+                                class="btn btn-primary mb-1">Modifica</a>
                             <form action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}"
                                 method="POST">
                                 @csrf
