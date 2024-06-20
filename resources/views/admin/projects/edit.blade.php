@@ -15,6 +15,6 @@
         </label>
         <textarea class="form-control p-3
         " type="text" id="description" name="description">{{ $project->description }}</textarea>
-        <button class="btn btn-success mt-3"><i class="fa-solid fa-plus"></i></button>
+        <button class="btn btn-success mt-3" type="submit"><i class="fa-solid fa-plus"></i></button>
     </form>
 @endsection
