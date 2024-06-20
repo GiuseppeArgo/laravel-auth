@@ -1,6 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
+    <div>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>I tuoi progetti</h1>
+        <a class="btn btn-primary" href="{{ route('admin.projects.create') }}">Crea nuovo progetto</a>
+    </div>
+
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
+
     <div class="table-responsive">
         <table class="table table-striped">
             <thead class="thead-dark">
@@ -8,6 +20,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Slug</th>
                     <th>Opzioni</th>
                 </tr>
             </thead>
@@ -17,10 +30,21 @@
                         <td>{{ $project->id }}</td>
                         <td>{{ $project->name }}</td>
                         <td>{{ $project->description }}</td>
-                        <td> <a href="{{ route('admin.projects.show', ['project' => $project->slug])}}" class="btn btn-info">Dettagli</a></td>
+                        <td>{{ $project->slug }}</td>
+                        <td>
+                            <a href="{{ route('admin.projects.show', ['project' => $project->slug]) }}"
+                                class="btn btn-info">Dettagli</a>
+                            <form action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Elimina</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+    
 @endsection
