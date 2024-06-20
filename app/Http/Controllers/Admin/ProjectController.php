@@ -67,6 +67,7 @@ class ProjectController extends Controller
     {
         $project->name = $request->name;
         $project->description =$request->description;
+        $project->slug = Str::slug($request->name);
         $project->save();
         return view('admin.projects.show', compact('project'));
     }
